@@ -2,6 +2,11 @@
 
 Tutorial for basic asp.net core web api deployed on kubernetes via minikube and docker.
 
+## Useful Links
+* https://docs.microsoft.com/en-us/aspnet/core/tutorials/web-api-vsc
+* https://kubernetes.io/docs/tutorials/stateless-application/hello-minikube/
+* https://stackoverflow.com/questions/42564058/how-to-use-local-docker-images-in-kubernetes/42564211
+
 ## Versions
 * minikube version: v0.24.1
 * docker version 17.12.0-ce, build c97c6d6
@@ -35,3 +40,10 @@ We will be using minikube's local docker deamon. Docker images will not be hoste
 3. Save kubernetes cluster master ip. ```minikube cluster info``` 
 4. Run docker container to quickly test. ```docker run -it --rm -p 8080:8080 --name grade-service grade-service:v1```
 5. In web browser or postman navigate to <step 3 ip>:8080/api/values
+
+## Kubernetes Deployment w/ Docker images
+1. ```kubectl run grade-service --image=grade-service:v1 --port=8080 imagePullPolicy=Never```
+2. Check deployment and pod ```kubectl get deployments``` and ```kubectl get pods``` 
+3. Create and expose service ```kubectl expose deployment grade-service --type=LoadBalancer```
+4. Check services ```kubectl get services```
+5. Navigate to service ```minikube service grade-service``` and append /api/values
