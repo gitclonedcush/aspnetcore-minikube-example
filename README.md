@@ -36,14 +36,17 @@ We will be using minikube's local docker deamon. Docker images will not be hoste
 
 1. ```eval $(minikube docker-env)```
 2. ``` docker build -t grade-service:v1 .```
-    * If you do not demarcate your image tag version it will be given the tag of latest. Kubectl will attempt to remotely pull images tagged with latest.
+    * If you do not demarcate your image tag version it will be given the tag of latest. Kubectl will attempt to remotely pull images tagged with latest, and we do not want this.
 3. Save kubernetes cluster master ip. ```minikube cluster info``` 
 4. Run docker container to quickly test. ```docker run -it --rm -p 8080:8080 --name grade-service grade-service:v1```
-5. In web browser or postman navigate to <step 3 ip>:8080/api/values
+5. In web browser or postman navigate to ```<step 3 ip>:8080/api/values```
 
 ## Kubernetes Deployment w/ Docker images
 1. ```kubectl run grade-service --image=grade-service:v1 --port=8080 imagePullPolicy=Never```
 2. Check deployment and pod ```kubectl get deployments``` and ```kubectl get pods``` 
 3. Create and expose service ```kubectl expose deployment grade-service --type=LoadBalancer```
 4. Check services ```kubectl get services```
-5. Navigate to service ```minikube service grade-service``` and append /api/values
+5. Navigate to service ```minikube service grade-service``` and append ```/api/values```
+
+## Next Steps
+You should have your asp.net core web api running on a kubernetes cluster via minikube and docker. Now would be a good time to expand the web api, play around with multiple services and docker-compose, explore kubectl yaml config files (you can explore the default ones created for you during this tutorial via `minikube dashboard`).
