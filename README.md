@@ -1,12 +1,12 @@
 # aspnetcore-minikube-example
 
-## Project Setup
+## Setup
 
-`` 
+1. 
+``` 
 mkdir GradeService
 cd GradeService
 dotnet new webapi
-``
+```
 
-## Dockerfile
-Dockerfile exposes port 8080
+2. Dockerfile exposes port 8080
