@@ -37,7 +37,7 @@ We will be using minikube's local docker deamon. Docker images will not be hoste
 1. ```eval $(minikube docker-env)``` (or, on Windows/PowerShell: ```& minikube docker-env | Invoke-Expression```)
 2. ``` docker build -t grade-service:v1 .```
     * If you do not demarcate your image tag version it will be given the tag of latest. Kubectl will attempt to remotely pull images tagged with latest, and we do not want this.
-3. Save kubernetes cluster master ip. ```minikube cluster info``` 
+3. Save kubernetes cluster master ip. ```minikube ip``` 
 4. Run docker container to quickly test. ```docker run -it --rm -p 8080:8080 --name grade-service grade-service:v1```
 5. In web browser or postman navigate to ```<step 3 ip>:8080/api/values```
 
